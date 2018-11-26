@@ -1,0 +1,9 @@
+Dagbók fyrir Lokaverkefnis
+
+26.11.2018 - Byrjað á verkefni, farið yfir allt sem þarf að gera og undirbúið allt saman.
+Byrjað að setja upp allar stillingar og OUin
+
+
+-Breyti Nöfnum á netkortum og setti upp rétta Ip tölu
+-Setti upp DNS og DomainController(DC)
+- Setti allt upp svo hægt sé að setja upp DC á 07 og DHCP og allt svoleiðs á 08
