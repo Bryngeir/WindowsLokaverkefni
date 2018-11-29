@@ -7,3 +7,9 @@ Byrjað að setja upp allar stillingar og OUin
 -Breyti Nöfnum á netkortum og setti upp rétta Ip tölu
 -Setti upp DNS og DomainController(DC)
 - Setti allt upp svo hægt sé að setja upp DC á 07 og DHCP og allt svoleiðs á 08
+
+
+29.11.2018 - Haldið áfram með verkefnið
+-Hélt áfram að vinna í notendum, fann út hverning átti að gera notendanöfn fyrir nemendur semsagt með 
+-tveimur fyrstu stöfum úr fyrsta nafni og seinna nafni og sameignað það og bætt við teljara ef nafnið sé það sama
+-
