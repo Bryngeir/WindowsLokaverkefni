@@ -1,2 +1,9 @@
 29.11.18
 Hjálpaði Bryngeir að finna út hvernig það á að búa til og auto incrementa notendanöfnin á Nemendum og hvernig það væri skipt og hvernig það væri hægt að skifta Kennurum og Nemendum
+
+3.12.18
+Settum upp [ADDS] og [Scopið] á .107 og Tengdum .108 inn á [Domain].
+Settum inn IP-tölur fyrir alla notendur.
+löguðum notendakóðan og þurfum bara að setja inn [IF] setningu fyrir "Starfsmenn".
+Kom upp villa hjá okkur þar sem að nemendur fá fyrstu tvo stafina tvisvar í notendarnafnið, þó að kóðinn skilar okkur öllur réttu ef við
+sleppum teljaranum.
