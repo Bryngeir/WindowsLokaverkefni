@@ -13,3 +13,14 @@ Byrjað að setja upp allar stillingar og OUin
 -Hélt áfram að vinna í notendum, fann út hverning átti að gera notendanöfn fyrir nemendur semsagt með 
 -tveimur fyrstu stöfum úr fyrsta nafni og seinna nafni og sameignað það og bætt við teljara ef nafnið sé það sama
 -Vann í teljaranum þegar farið er að skoða hvort notandi sé nú þegar til
+
+
+03.12.2018
+-Setti upp allt sem við vorum búinir að gera tilbúið fyrir ADDS
+-Tengdi Tölvurnar saman, setti upp DHCP á seinni serverinn.
+-Setti upp scopið
+-Setti upp ip tölur fyrir alla notendur
+-Hélt áfram að vinna í notendum, þarf að bæta við einu ou fyrir ofan starfsmenn (nota if settningu?)
+-Lenti í vandamáli með að koma inn brautum en náði að laga það.
+-lenti í veseni með að ná ekki að fá réttu tvö stafinna í samaccountname
+-Lagaði að fá réttu stafinna og ætlum að reyna á aðferðina okkar á morgun!
