@@ -1,0 +1,29 @@
+
+New-Item c:\Data -ItemType Directory
+New-Item c:\Data\Notendur -ItemType Directory
+
+New-Item c:\Data\Notendur\Nemendur\Upplýsingatækniskólinn\Tölvubraut\Sameign -ItemType Directory
+New-Item c:\Data\Notendur\Nemendur\Upplýsingatækniskólinn\Grafískmiðlun\Sameign -ItemType Directory
+New-Item c:\Data\Notendur\Nemendur\Upplýsingatækniskólinn\Ljósmyndun\Sameign -ItemType Directory
+New-Item c:\Data\Notendur\Nemendur\Upplýsingatækniskólinn\Prentun\Sameign -ItemType Directory
+New-Item c:\Data\Notendur\Nemendur\Upplýsingatækniskólinn\Bókband\Sameign -ItemType Directory
+New-Item c:\Data\Notendur\Nemendur\Upplýsingatækniskólinn\Námsbraut_í_upplýsinga-_og_fjölmiðlagreinum\Sameign -ItemType Directory
+
+New-Item c:\Data\Notendur\Nemendur\Upplýsingatækniskólinn\Tölvubraut\Heima -ItemType Directory
+New-Item c:\Data\Notendur\Nemendur\Upplýsingatækniskólinn\Grafískmiðlun\Heima -ItemType Directory
+New-Item c:\Data\Notendur\Nemendur\Upplýsingatækniskólinn\Ljósmyndun\Heima -ItemType Directory
+New-Item c:\Data\Notendur\Nemendur\Upplýsingatækniskólinn\Prentun\Heima -ItemType Directory
+New-Item c:\Data\Notendur\Nemendur\Upplýsingatækniskólinn\Bókband\Heima -ItemType Directory
+New-Item c:\Data\Notendur\Nemendur\Upplýsingatækniskólinn\Námsbraut_í_upplýsinga-_og_fjölmiðlagreinum\Heima -ItemType Directory
+
+
+New-Item c:\Data\Notendur\Starfsmenn\Kennarar\Upplýsingatækniskólinn\Tölvubraut -ItemType Directory
+New-Item c:\Data\Notendur\Starfsmenn\Kennarar\Upplýsingatækniskólinn\Námsbraut_í_upplýsinga-_og_fjölmiðlagreinum -ItemType Directory
+New-Item c:\Data\Notendur\Starfsmenn\Kennarar\Upplýsingatækniskólinn\Tölvubraut\Sameign -ItemType Directory
+New-Item c:\Data\Notendur\Starfsmenn\Kennarar\Upplýsingatækniskólinn\Námsbraut_í_upplýsinga-_og_fjölmiðlagreinum\Sameign -ItemType Directory
+
+New-Item c:\Data\Notendur\Starfsmenn\Kennarar\Upplýsingatækniskólinn\Tölvubraut\Heima -ItemType Directory
+New-Item c:\Data\Notendur\Starfsmenn\Kennarar\Upplýsingatækniskólinn\Námsbraut_í_upplýsinga-_og_fjölmiðlagreinum\Heima -ItemType Directory
+
+New-Item c:\Data\Notendur\Skrifstofa\Sameign -ItemType Directory
+New-Item c:\Data\Notendur\Skrifstofa\Heima -ItemType Directory
