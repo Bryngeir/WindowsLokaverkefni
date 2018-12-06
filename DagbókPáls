@@ -1,17 +1,23 @@
-29.11.18
+### 29.11.18
 Hjálpaði Bryngeir að finna út hvernig það á að búa til og auto incrementa notendanöfnin á Nemendum og hvernig það væri skipt og hvernig það væri hægt að skifta Kennurum og Nemendum
 
-3.12.18
-Settum upp [ADDS] og [Scopið] á .107 og Tengdum .108 inn á [Domain].
+### 3.12.18
+Settum upp **[ADDS]** og **[Scopið]** á *** .107 *** og Tengdum *** .108 *** inn á **[Domain]**.
 Settum inn IP-tölur fyrir alla notendur.
 löguðum notendakóðan og þurfum bara að setja inn [IF] setningu fyrir "Starfsmenn".
 Kom upp villa hjá okkur þar sem að nemendur fá fyrstu tvo stafina tvisvar í notendarnafnið, þó að kóðinn skilar okkur öllur réttu ef við
 sleppum teljaranum.(lagað)
 
-5.12.18
+### 5.12.18
 Kláruðum að setja upp notendurnar og settum upp NAT.
 settum upp heimamöppur fyrir notendur og fleiri möppur fyrir restina á hópunum.
 Reyndum að setja upp firefox.msi fyrir notendur(gékk ekki).
 
-6.12.18
+### 6.12.18
 Gáfum öllum brautum hjá nemendum og kennurum sitthvora sameiginlega möppu.
+Náðum að klára 75% af vefsvæðum, gerðum möppur inná wwwroot með sama samaccountname
+og notendur í tölvubraut og index skjal sem stendur vefsvæði[notandi]
+kveiktum á Bubbles.scr fyrir alla notendur
+Tölvubraut sér alltaf startmenu þegar þeir skrá sig inn.
+Bannaði nemendum að fjarlægja eða bæta við forritum án admin réttinda og kennarar fengu réttindi til að gera það
+bannaði nemendum að breyta stillingum varðandi task manager og event viewer
