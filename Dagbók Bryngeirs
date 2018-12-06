@@ -1,6 +1,6 @@
-###Dagbók fyrir Lokaverkefnis
+### Dagbók fyrir Lokaverkefnis
 
-###26.11.2018 - Byrjað á verkefni, farið yfir allt sem þarf að gera og undirbúið allt saman.
+### 26.11.2018 - Byrjað á verkefni, farið yfir allt sem þarf að gera og undirbúið allt saman.
 Byrjað að setja upp allar stillingar og OUin
 
 
@@ -9,13 +9,13 @@ Byrjað að setja upp allar stillingar og OUin
 - Setti allt upp svo hægt sé að setja upp DC á 07 og DHCP og allt svoleiðs á 08
 
 
-###29.11.2018 - Haldið áfram með verkefnið
+### 29.11.2018 - Haldið áfram með verkefnið
 -Hélt áfram að vinna í notendum, fann út hverning átti að gera notendanöfn fyrir nemendur semsagt með 
 -tveimur fyrstu stöfum úr fyrsta nafni og seinna nafni og sameignað það og bætt við teljara ef nafnið sé það sama
 -Vann í teljaranum þegar farið er að skoða hvort notandi sé nú þegar til
 
 
-###03.12.2018
+### 03.12.2018
 -Setti upp allt sem við vorum búinir að gera tilbúið fyrir ADDS
 -Tengdi Tölvurnar saman, setti upp DHCP á seinni serverinn.
 -Setti upp scopið
@@ -26,7 +26,7 @@ Byrjað að setja upp allar stillingar og OUin
 -Lagaði að fá réttu stafinna og ætlum að reyna á aðferðina okkar á morgun!
 
 
-###05.12.2018
+### 05.12.2018
 -Kláraði að setja upp Notendur, kom teljaranum í lag, eina sem þurfti að laga var að breyta hverju fallið var að skila
 -Settum upp NAT og Gerðum klárt þaning hægt sé að tengjast í gegnum notendur
 -Settum upp heima möppur fyrir alla notendur og sameign
@@ -34,7 +34,7 @@ Byrjað að setja upp allar stillingar og OUin
 -reyndum að setja upp firefox en gekk ekki.
 
 
-###06.12.2018
+### 06.12.2018
 -Kláruðum að setja upp vefsvæði. t.d að gefa því stafinn W fyrir alla notendur á tölvubraut og gáfum þeim réttindi
 -Gáfum einging Kennurum á tölvubraut réttindi á vefsvæðið (wwwroot)
 -Bannaði nemendum að fjærlægja eða bæta við forritum án admin réttinda, en kennarar fengu réttindi til að gera það
