@@ -1,2 +1,3 @@
-# WindowsLokaverkefni
-Lokaverkefnið í Windows Áfanga
+## WindowsLokaverkefni
+# Lokaverkefnið í Windows Áfanga
+Bryngeir og Páll
