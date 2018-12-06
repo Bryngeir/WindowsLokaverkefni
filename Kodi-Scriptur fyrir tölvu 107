@@ -1,0 +1,155 @@
+$passwd = ConvertTo-SecureString -AsPlainText "2015P@ssword" -Force
+$win8notandi = New-Object System.Management.Automation.PSCredential -ArgumentList $("win3a-w81-07\administrator"), $passwd
+
+$servernotandi = New-Object System.Management.Automation.PSCredential -ArgumentList $($env:userdomain + "\administrator"), $passwd
+
+Add-Computer -ComputerName "win3a-w81-07" -LocalCredential $win8notandi -DomainName $env:USERDNSDOMAIN -Credential $servernotandi -Restart -Force
+
+
+New-ADOrganizationalUnit -Name Tölvur -ProtectedFromAccidentalDeletion $false
+
+
+Move-ADObject -Identity "CN=WIN3A-W81-07,CN=Computers,DC=EEP-BP,DC=local" -TargetPath $("OU=Tölvur, dc=" + $env:userdomain +",dc=" + $env:USERDNSDOMAIN.Split('.')[1])
+
+New-ADOrganizationalUnit Notendur -ProtectedFromAccidentalDeletion $false
+
+New-ADGroup -Name Allir -Path "ou=notendur, dc=EEP-BP, dc =local" -GroupScope Global
+
+New-ADOrganizationalUnit -Name "Starfsmenn" -Path "ou=notendur, dc=EEP-BP, dc=local" -ProtectedFromAccidentalDeletion $false
+
+New-ADGroup -Name Starfsmenn -Path "ou=Starfsmenn,ou=notendur, dc=EEP-BP, dc =local" -GroupScope Global
+
+New-ADOrganizationalUnit -Name "Skrifstofa" -Path "ou=notendur, dc=EEP-BP, dc=local" -ProtectedFromAccidentalDeletion $false
+
+New-ADGroup -Name Skrifstofa -Path "ou=Skrifstofa,ou=notendur, dc=EEP-BP, dc =local" -GroupScope Global
+
+$notendur = Import-Csv .\notendur.csv 
+
+function notendanafnem
+{
+    param(
+        $nafn
+    )
+   
+    
+    $nafn  = $nafn.substring(0) -replace "í", "i" -replace "ð","d" -replace "á","a" -replace "ó","o" -replace "é","e" -replace "ö","o" -replace "æ","ae" -replace "þ","th" -replace "ú","u" -replace " ","." -replace "ý","y"
+    $nafnsplit = $nafn.split('.')
+    $nafnnem = $($nafnsplit[0].substring(0,2)) + $($nafnsplit[-1].substring(0,2))
+    $ADOK = $True
+    $SamOK = $false
+    $teljari = 1
+    
+    Do{
+        $leita = $nafnnem +("{0:D2}" -f $teljari++)
+        "Trying '$($leita)' ... " | Write-Host -NoNewline
+        Try {
+		If (Get-ADUser -LDAPFilter "(sAMAccountName=$leita)" -ErrorAction Stop) {
+			"Tekið." | Write-Host
+		} Else {
+			"Laust!." | Write-Host
+			$SamOK = $True
+		}
+	}
+	Catch {
+		"Villa!" | Write-Host
+		$_.Exception | Out-String | Write-Error
+		$ADOK = $False
+	}
+} Until ($SamOK -Or !$ADOK -Or ($teljari -ge 99))
+If ($SamOK) {
+	"Býr til nýjan  notanda með notendanafnið '$leita'" | Write-Host
+} ElseIf (!$ADOK) {
+	"Gat ekki skoðað notendur!" | Write-Host
+} Else {
+	"fann ekki tölu á milli 1 og 99!" | Write-Host
+}
+    
+    return $leita
+
+}
+
+function notendanafnKenn
+{
+    param(
+        $nafnkenn
+    )
+    
+    $nafnkenn  = $n.nafn.substring(0) -replace "í", "i" -replace "ð","d" -replace "á","a" -replace "ó","o" -replace "é","e" -replace "ö","o" -replace "æ","ae" -replace "þ","th" -replace "ú","u" -replace " ","." -replace "ý","y"
+    $nafnkenn = $nafnkenn.substring(0,[System.Math]::Min(20, $n.nafn.length)).TrimEnd(' ')
+    return $nafnkenn
+        
+}
+
+foreach($n in $notendur) {
+    $Skoli = $n.Skoli
+    $Hlutverk = $n.Hlutverk
+    $Braut = $n.Braut 
+    if((Get-ADOrganizationalUnit -Filter { name -eq $Hlutverk }).Name -ne $Hlutverk) {
+        New-ADOrganizationalUnit -Name $Hlutverk -Path "ou=notendur, dc=EEP-BP, dc=local" -ProtectedFromAccidentalDeletion $false
+        New-ADGroup -Name $Hlutverk -Path $("ou="+ $Hlutverk +",ou=notendur, dc=EEP-BP, dc=local") -GroupScope Global
+        Add-ADGroupMember -Identity Allir -Members $Hlutverk
+
+    }
+    if((Get-ADOrganizationalUnit -SearchBase $("ou="+ $Hlutverk +",ou=notendur, dc=EEP-BP, dc=local") -Filter { name -eq $Skoli }).Name -ne $Skoli) {
+        New-ADOrganizationalUnit -Name $Skoli -Path $("ou="+ $Hlutverk +",ou=notendur, dc=EEP-BP, dc=local") -ProtectedFromAccidentalDeletion $false
+        New-ADGroup -Name $($Skoli + $Hlutverk) -Path $("ou="+ $Skoli +",ou=" + $Hlutverk + ",ou=notendur, dc=EEP-BP, dc=local") -GroupScope Global
+        Add-ADGroupMember -Identity $Hlutverk -Members $($Skoli + $Hlutverk)
+       }
+
+    if((Get-ADOrganizationalUnit -SearchBase $("ou="+ $Hlutverk +",ou=notendur, dc=EEP-BP, dc=local") -Filter { name -eq $Braut }).Name -ne $Braut) {
+        New-ADOrganizationalUnit -Name $Braut -Path $("ou="+ $Skoli +",ou=" +$Hlutverk +",ou=notendur, dc=EEP-BP, dc=local") -ProtectedFromAccidentalDeletion $false
+        New-ADGroup -Name $($Braut + $Hlutverk) -Path $("ou="+ $Braut +",ou="+ $Skoli +",ou=" + $Hlutverk + ",ou=notendur, dc=EEP-BP, dc=local") -GroupScope Global
+        Add-ADGroupMember -Identity $($Skoli+ $Hlutverk) -Members $($Braut + $Hlutverk)
+
+
+       }
+        $loginnafn = if($n.hlutverk -eq "Nemendur") {
+                notendanafnem -nafn $n.nafn
+        }
+        else {
+                notendanafnKenn -nafn $n.nafn
+        }
+    $stillingar = @{
+        Name = $n.Nafn
+        DisplayName = $n.Nafn
+        GivenName = $n.Nafn.substring(0,($n.Nafn.Length - $n.Nafn.Split(' ')[-1].length -1))
+        Surname = $n.Nafn.Split(' ')[-1]
+        SamAccountName = $loginnafn
+        UserPrincipalName = $($loginnafn + "@EEP-BP.local")
+        AccountPassword = (ConvertTo-SecureString -AsPlainText "pass.123" -Force)
+        Path = $("ou="+ $Braut +",ou=" + $Skoli + ",ou=" + $Hlutverk + ",ou=notendur, dc=EEP-BP, dc=local")
+        Enabled = $true
+        
+    }
+
+    New-AdUser @stillingar
+
+    Add-ADGroupMember -Identity $Hlutverk -members $loginnafn
+}
+
+#Vefslóðir
+
+### DNS ###
+
+# Búa til lénið skoli.is, þarf bara að gera einu sinni.
+Add-DnsServerPrimaryZone -Name "tskoli.is" -ReplicationScope Domain
+
+# Búa til host færslu fyrir www (IPv4)
+Add-DnsServerResourceRecordA -ZoneName "tskoli.is" -Name "www" -IPv4Address "10.10.0.1"
+# Hér mætti svo bæta við fleiri host færslum fyrir t.d. tskoli.is (án www)
+
+### IIS ###
+
+# Setja inn IIS role-ið, þarf bara að gera einu sinni.
+Install-WindowsFeature web-server -IncludeManagementTools
+
+# Búa til nýja möppu í wwwroot
+New-Item "C:\inetpub\wwwroot\www.tskoli.is" -ItemType Directory
+
+# Búa til html skjal sem inniheldur "Vefsíðan www.tskoli.is" í nýju möppuna
+New-Item "C:\inetpub\wwwroot\www.tskoli.is\index.html" -ItemType File -Value "Vefsíðan www.tskoli.is"
+
+# Búa til nýja vefsíðu á vefþjóninn
+New-Website -Name "www.tskoli.is" -HostHeader "www.tskoli.is" -PhysicalPath "C:\inetpub\wwwroot\www.tskoli.is\"
+# Ef það þarf að bæta við fleiri hostheader-um má gera það
+New-WebBinding -Name "www.tskoli.is" -HostHeader "tskoli.is"
