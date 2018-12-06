@@ -153,3 +153,23 @@ New-Item "C:\inetpub\wwwroot\www.tskoli.is\index.html" -ItemType File -Value "Ve
 New-Website -Name "www.tskoli.is" -HostHeader "www.tskoli.is" -PhysicalPath "C:\inetpub\wwwroot\www.tskoli.is\"
 # Ef það þarf að bæta við fleiri hostheader-um má gera það
 New-WebBinding -Name "www.tskoli.is" -HostHeader "tskoli.is"
+
+# Heimasvæði/vefsíður fyrir TölvubrautNotendur
+
+Add-DnsServerPrimaryZone -Name "tskoli.is" -ReplicationScope Domain
+
+
+$ADgroup = (Get-adUser -Filter * -SearchBase "OU=TölvuBraut, OU=upplýsingatækniskólinn, OU=Nemendur, OU=Notendur, DC=EEP-BP, DC=local").samaccountname
+ 
+ 
+ForEach ($ADUser in $ADgroup)  
+{ 
+
+New-Item -ItemType Directory -Path "C:\inetpub\wwwroot\$($ADUser)" 
+
+New-Item "C:\inetpub\wwwroot\$($ADUser)\index.html" -ItemType File -Value "Vefsida $($ADUser)"
+
+New-Website -Name "www.$($ADUser).tskoli.is" -HostHeader "www.$($ADUser).tskoli.is" -PhysicalPath "C:\inetpub\wwwroot\$($ADUser)\"
+
+}
+
